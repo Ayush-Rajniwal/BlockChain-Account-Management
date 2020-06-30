@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+   
+    <title>Account Management | BlockChain</title>
+
+    <!-- Bootstrap -->
+    <link href="vendor/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link
+      href="https://unpkg.com/tabulator-tables@4.7.0/dist/css/tabulator.min.css"
+      rel="stylesheet"
+    />
+
+    <style>
+      main {
+        margin-top: 60px;
+      }
+
+      #content {
+        display: none;
+      }
+
+      form {
+        width: 350px;
+        margin-bottom: 10px;
+      }
+
+      ul {
+        margin-bottom: 0px;
+      }
+
+      #completedTaskList .content {
+        color: grey;
+        text-decoration: line-through;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
+      <a
+        class="navbar-brand col-sm-3 col-md-2 mr-0"
+        href="https://github.com/Ayush-Rajniwal/"
+        target="_blank"
+        >Account Management | BlockChain</a
+      >
+    </nav>
+    <div class="container-fluid">
+      <div class="row">
+        <main role="main" class="col-lg-12 d-flex justify-content-center">
+          <div class="btn-group">
+            <button
+              type="button"
+              class="btn btn-primary"
+              data-toggle="modal"
+              data-target="#regModal"
+            >
+              Register
+            </button>
+            <button
+              type="button"
+              class="btn btn-primary"
+              data-toggle="modal"
+              data-target="#modModal"
+            >
+              Modify
+            </button>
+            <button
+              type="button"
+              class="btn btn-primary"
+              data-toggle="modal"
+              data-target="#depositModal"
+            >
+              Deposit
+            </button>
+            <button
+              type="button"
+              class="btn btn-primary"
+              data-toggle="modal"
+              data-target="#withdrawModal"
+            >
+              Withdraw
+            </button>
+          </div>
+        </main>
+        <div class="col d-flex justify-content-center mt-5">
+          <h1>An Experiment with BlockChain</h1>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col d-flex justify-content-center">
+          <h4>Total User: <span id="totalUsers"></span></h4>
+        </div>
+      </div>
+    </div>
+    <div class="container" id="example"></div>
+
+    <!--NOTE All Modal below it  -->
+    <!--NOTE Registration Modal -->
+    <div class="modal" id="regModal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">Registration</h4>
+            <button type="button" class="close" data-dismiss="modal">
+              &times;
+            </button>
+          </div>
+
+          <div class="modal-body">
+            <div class="container d-flex justify-content-center">
+              <form id="reg">
+                <div class="row">
+                  <div class="col">
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="firstName"
+                      placeholder="First Name"
+                      name="firstName"
+                    />
+                  </div>
+                  <div class="col">
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="lastName"
+                      placeholder="Last Name"
+                      name="lastName"
+                    />
+                  </div>
+                </div>
+                <div class="row mt-2">
+                  <div class="col">
+                    <input
+                      class="form-control"
+                      type="number"
+                      id="age"
+                      placeholder="Age"
+                      name="age"
+                    />
+                  </div>
+                  <div class="col">
+                    <div class="form-group">
+                      <select class="form-control" id="gender">
+                        <option>Male</option>
+                        <option>Female</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col">
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="line1"
+                      placeholder="Address Line 1"
+                      name="line1"
+                    />
+                  </div>
+                </div>
+                <div class="row mt-2">
+                  <div class="col">
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="line2"
+                      placeholder="Address Line 2"
+                      name="line2"
+                    />
+                  </div>
+                </div>
+                <div class="row mt-2">
+                  <div class="col">
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="city"
+                      placeholder="City"
+                      name="city"
+                    />
+                  </div>
+                  <div class="col">
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="state"
+                      placeholder="State"
+                      name="state"
+                    />
+                  </div>
+                </div>
+                <div class="row mt-2">
+                  <div class="col">
+                    <input
+                      type="number"
+                      class="form-control"
+                      id="pincode"
+                      placeholder="Pincode"
+                    />
+                  </div>
+                </div>
+                <div class="row mt-2">
+                  <div class="col">
+                    <div>Account will be linked with the address</div>
+                    <p class="text-info account"></p>
+                  </div>
+                </div>
+
+                <div class="row mt-2">
+                  <div class="col">
+                    <button
+                      type="submit"
+                      id="formSubmitBtn"
+                      class="btn btn-success"
+                    >
+                      Submit
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--NOTE Modify Modal -->
+    <div class="modal" id="modModal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">Update</h4>
+            <button type="button" class="close" data-dismiss="modal">
+              &times;
+            </button>
+          </div>
+
+          <div class="modal-body">
+            <div class="container d-flex justify-content-center">
+              <form id="mod">
+                <div class="row">
+                  <div class="col">
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="firstName_m"
+                      placeholder="First Name"
+                      name="firstName"
+                    />
+                  </div>
+                  <div class="col">
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="lastName_m"
+                      placeholder="Last Name"
+                      name="lastName"
+                    />
+                  </div>
+                </div>
+                <div class="row mt-2">
+                  <div class="col">
+                    <input
+                      class="form-control"
+                      type="number"
+                      id="age_m"
+                      placeholder="Age"
+                      name="age"
+                    />
+                  </div>
+                  <div class="col">
+                    <div class="form-group">
+                      <select class="form-control" id="gender_m">
+                        <option>Male</option>
+                        <option>Female</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col">
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="line1_m"
+                      placeholder="Address Line 1"
+                      name="line1"
+                    />
+                  </div>
+                </div>
+                <div class="row mt-2">
+                  <div class="col">
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="line2_m"
+                      placeholder="Address Line 2"
+                      name="line2"
+                    />
+                  </div>
+                </div>
+                <div class="row mt-2">
+                  <div class="col">
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="city_m"
+                      placeholder="City"
+                      name="city"
+                    />
+                  </div>
+                  <div class="col">
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="state_m"
+                      placeholder="State"
+                      name="state"
+                    />
+                  </div>
+                </div>
+                <div class="row mt-2">
+                  <div class="col">
+                    <input
+                      type="number"
+                      class="form-control"
+                      id="pincode_m"
+                      placeholder="Pincode"
+                    />
+                  </div>
+                </div>
+                <div class="row mt-2">
+                  <div class="col">
+                    <div>Account at below address will be updated.</div>
+                    <p class="text-info account"></p>
+                  </div>
+                </div>
+
+                <div class="row mt-2">
+                  <div class="col">
+                    <button
+                      type="submit"
+                      id="formSubmitBtn"
+                      class="btn btn-success"
+                    >
+                      Submit
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--NOTE Deposit Modal -->
+    <div class="modal" id="depositModal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">Deposit and Transfer</h4>
+            <button type="button" class="close" data-dismiss="modal">
+              &times;
+            </button>
+          </div>
+
+          <div class="modal-body">
+            <div class="container d-flex justify-content-center">
+              <form id="dep">
+                <div class="row">
+                  <div class="col">
+                    <div class="form-group">
+                      <label for="usr">Address:</label>
+                      <input type="text" class="form-control" id="destAdr" />
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="form-group">
+                      <label for="usr">Value (Eth):</label>
+                      <input
+                        type="number"
+                        min="0"
+                        class="form-control"
+                        id="valToTra"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col">
+                    Money will be transfer from the MetaMask Wallet to the
+                    Address
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col">
+                    <button class="btn btn-primary" id="depSelf">
+                      Deposit on the Smart Contract
+                    </button>
+                  </div>
+                </div>
+                <div class="row mt-2">
+                  <div class="col">
+                    <button class="btn btn-primary" id="depOth">
+                      Transfer to the given address
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--NOTE Withdraw Modal -->
+    <div class="modal" id="withdrawModal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">Withdraw </h4>
+            <button type="button" class="close" data-dismiss="modal">
+              &times;
+            </button>
+          </div>
+
+          <div class="modal-body">
+           <div class="container">
+             <div class="row">
+              <div class="col">
+                Your Balance at Smart Contract: <span id="bal">0</span> Eth
+              </div>
+              <div class="col">
+                <button class="btn btn-success" id="chBal">
+                  Check Balance
+                </button>
+              </div>
+             </div>
+             <div class="row mt-2">
+               <div class="col">
+                  <div class="form-group">          
+                      <input
+                        type="number"
+                        min="0"
+                        class="form-control"
+                        id="amtToWit"
+                        placeholder="Amount to Withdraw"
+                      />
+                    </div>
+               </div>
+               <div class="col">
+                  <button class="btn btn-primary" id="btnWithdraw">
+                    Withdraw
+                  </button>
+               </div>
+             </div>
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="vendor/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="vendor/truffle-contract/dist/truffle-contract.js"></script>
+    <script
+      type="text/javascript"
+      src="https://unpkg.com/tabulator-tables@4.7.0/dist/js/tabulator.min.js"
+    ></script>
+    <script src="app.js"></script>
+  </body>
+</html>
