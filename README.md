@@ -2,6 +2,8 @@
 
 It is Decentralized open source App (Dapp) built on Ethereum platform. It help in managing multiple accounts.
 
+<p align="center"><img src="./static/banner.gif" width="500" title="metamask login"> </p>
+
 ## Features
 
 - Deposit ETH to the Smart Contract and withdraw them later.
